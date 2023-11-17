@@ -9,15 +9,17 @@ def getTotal(list):
         (tot_pam, tot_carr) = comparaProdotto(product)
     result_pam = "{:.2f}".format(tot_pam)
     result_carr = "{:.2f}".format(tot_carr)
-    #print(result_pam)
-    #print(result_carr)
+
+    # print(result_pam)
+    # print(result_carr)
+
     Dictionary = {}
     Dictionary['Pam'] = result_pam
     Dictionary['Carrefour'] = result_carr
+    
     return Dictionary
 
 def comparaProdotto(product):
-
     global tot_carr
     global tot_pam
 
@@ -64,16 +66,15 @@ def comparaProdotto(product):
 
     tot_carr = tot_carr + price_num2
 
-   # print("\n\nBUY HERE: ")
+    # print("\n\nBUY HERE: ")
 
-    #if(price_num2<price_num1): 
-     #  print("CARREFOUR")
-    #else:
-     # print("PAM")
+    # if(price_num2<price_num1): 
+    #   print("CARREFOUR")
+    # else:
+    #  print("PAM")
     
     return (tot_pam, tot_carr)
 
 #main
-
 tot_pam = 0
 tot_carr = 0
