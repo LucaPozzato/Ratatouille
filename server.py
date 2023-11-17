@@ -148,7 +148,7 @@ def compare_product():
     if request.is_json:
         data = request.get_json()
         products = data["list"]
-        result = Comparator.getTotal(products)
+        result = comparator.getTotal(products)
         return jsonify(result)
     return {"error": "Request must be JSON"}, 415
 
