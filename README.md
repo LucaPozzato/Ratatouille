@@ -10,18 +10,7 @@ GET request, returns a json file with all the items in database
 `curl -i http://SERVER_IP:SERVER_PORT/pantry`
 
 > Response: \
-`[
-  { 
-    "category": "Bakery",
-    "product": "Croissant",
-    "shelf_life": 2
-  },
-  {
-    "category": "Spread",
-    "product": "Nutella",
-    "shelf_life": 365
-  }
-]`
+`[{"category": "Bakery", "product": "Croissant", "shelf_life": 2}, {"category": "Spread", "product": "Nutella", "shelf_life": 365}]`
 
 ### Add product manually -> /pantry/add
 
@@ -45,11 +34,9 @@ POST request, payload needs to be a json file (formatted as shown in example), i
 `curl -i http://SERVER_IP:SERVER_PORT/pantry/identify -X POST -H 'Content-Type: application/json' -d '{"image": ENCODED_IMAGE_BASE64}'`
 
 > Response: \
-`{
-  "category": "Tomatoes",
+`{"category": "Tomatoes",
   "product": "Redsun Cocktail Tomatoes",
-  "shelf_life": 7
-}`
+  "shelf_life": 7}`
 
 ### Add indentified product -> /pantry/identify/confirm
 
@@ -73,10 +60,7 @@ POST request, payload needs to be a json file (formatted as shown in example). R
 `curl -i http://SERVER_IP:SERVER_PORT/compare -X POST -H 'Content-Type: application/json' -d '{"list": ["gocciole", "pasta", "pesto", "fagioli"]}'`
 
 > Response: \
-`{
-  "Carrefour": "5.24",
-  "Pam": "4.80"
-}`
+`{"Carrefour": "5.24", "Pam": "4.80"}`
 
 ### Get recipe from products in database -> /recipe
 
@@ -86,9 +70,7 @@ GET request, returns a json file with the recipe
 `curl -i http://SERVER_IP:SERVER_PORT/recipe`
 
 > Response: \
-`{
-  "recipe": "Considering the ingredients given, you can make a simple \"Nutella Filled Croissant with Corn Cream Sauce\". Here's how:\n\nIngredients:\n- Croissant\n- Nutella\n- Pane morbido di grano duro (Optional, can also be replaced by normal bread)\n- Panna da cucina\n- Bonduelle Gold Zlat\u00e1 Kukurica (Canned corn)\n\nInstructions:\n\n1. Warm up your croissants at about 180 degrees in a preheated oven for about 5 minutes. \n\n2. Cut the croissants on one side to create a pocket.\n\n3. Fill the croissant with Nutella (use as much as you prefer).\n\n4. For the corn cream sauce, open up the can of Bonduelle Gold Zlat\u00e1 Kukurica / Canned corn and drain the water.\n\n5. Heat a pan. Add the canned corn and cook for about 3-5 minutes.\n\n6. Lower the heat, add Panna da cucina (heavy cream) to the corn and cook for another 2-3 minutes. Let the corn combination cool.\n\n7. Once cooled, start blending the corn and cream mix till it turns into a smooth paste.\n\n8. Drizzle your corn cream sauce on top of your Nutella filled croissants before serving.\n\nEnjoy your sweet and savoury treat!\n\nAs a note, the \"Pane morbido di grano duro - Esselunga - 400 g\" is a type of bread and the \"San Benedetto th\u00e8 Limone deteinato 0,5\" is a type of lemon tea. These ingredients don't quite fit into the suggested recipe and are hence, optional. On a side note, you can definitely enjoy the lemon tea as a refreshing drink with this sweet and savory treat."
-}`
+`{"recipe": "Considering the ingredients given, you can make a simple \"Nutella Filled Croissant with Corn Cream Sauce\". Here's how:\n\nIngredients:\n- Croissant\n- Nutella\n- Pane morbido di grano duro (Optional, can also be replaced by normal bread)\n- Panna da cucina\n- Bonduelle Gold Zlat\u00e1 Kukurica (Canned corn)\n\nInstructions:\n\n1. Warm up your croissants at about 180 degrees in a preheated oven for about 5 minutes. \n\n2. Cut the croissants on one side to create a pocket.\n\n3. Fill the croissant with Nutella (use as much as you prefer).\n\n4. For the corn cream sauce, open up the can of Bonduelle Gold Zlat\u00e1 Kukurica / Canned corn and drain the water.\n\n5. Heat a pan. Add the canned corn and cook for about 3-5 minutes.\n\n6. Lower the heat, add Panna da cucina (heavy cream) to the corn and cook for another 2-3 minutes. Let the corn combination cool.\n\n7. Once cooled, start blending the corn and cream mix till it turns into a smooth paste.\n\n8. Drizzle your corn cream sauce on top of your Nutella filled croissants before serving.\n\nEnjoy your sweet and savoury treat!\n\nAs a note, the \"Pane morbido di grano duro - Esselunga - 400 g\" is a type of bread and the \"San Benedetto th\u00e8 Limone deteinato 0,5\" is a type of lemon tea. These ingredients don't quite fit into the suggested recipe and are hence, optional. On a side note, you can definitely enjoy the lemon tea as a refreshing drink with this sweet and savory treat."}`
 
 ## Run the server
 

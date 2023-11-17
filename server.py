@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 import sqlite3
 import identifier
 import recipe
-import Comparator
+import comparator
 import json
 
 app = Flask(__name__)
