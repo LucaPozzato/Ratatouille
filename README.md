@@ -88,6 +88,6 @@ GET request, returns a json file with the recipe
 
 > flask run
 
-or if you wanna set use ip address of computer
+or if you wanna use ip address of computer
 
 > flask run -h 0.0.0.0 -p PORT
