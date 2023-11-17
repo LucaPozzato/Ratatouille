@@ -20,14 +20,10 @@ def list_pantry():
     SELECT product, category, shelf_life
     FROM products;
     '''
-
-    # Execute the query
     cursor.execute(select_all_query)
 
-    # Fetch all the results
     products_data = cursor.fetchall()
 
-    # Organize the results into a dictionary
     products_dict_list = []
     for product_data in products_data:
         product_dict = {
@@ -48,12 +44,10 @@ def get_product():
 
         json_data = request.get_json()
 
-        # Extract product, category, and shelf_life from the JSON data
         new_product = json_data['product']
         new_category = json_data['category']
         new_shelf_life = json_data['shelf_life']
 
-        # Determine the new id by finding the maximum existing id and adding 1
         get_max_id_query = '''
         SELECT MAX(id) FROM products;
         '''
@@ -62,7 +56,6 @@ def get_product():
         max_id = cursor.fetchone()[0]
         new_id = max_id + 1 if max_id is not None else 1
 
-        # Insert the new product data into the database
         insert_new_product_query = f'''
         INSERT INTO products (id, product, category, shelf_life)
         VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
@@ -70,7 +63,6 @@ def get_product():
 
         cursor.execute(insert_new_product_query)
 
-        # Commit the changes and close the connection
         conn.commit()
         conn.close()
 
@@ -87,16 +79,12 @@ def del_product():
 
         product_to_delete = product["product"]
 
-        # Delete the product by name
         delete_product_query = f'''
         DELETE FROM products
         WHERE product = '{product_to_delete}';
         '''
-
-        # Execute the query
         cursor.execute(delete_product_query)
 
-        # Commit the changes and close the connection
         conn.commit()
         conn.close()
 
@@ -110,7 +98,8 @@ def identify_product():
         image = to_id["image"]
         global id_product
         id_product = identifier.get_product(image=image)
-        return jsonify(id_product)
+        product_dict = json.loads(id_product)
+        return jsonify(product_dict)
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/identify/confirm")
@@ -123,12 +112,10 @@ def confirm():
     json_data = json.loads(id_product)
     print(json_data)
 
-    # Extract product, category, and shelf_life from the JSON data
     new_product = json_data['product']
     new_category = json_data['category']
     new_shelf_life = json_data['shelf_life']
 
-    # Determine the new id by finding the maximum existing id and adding 1
     get_max_id_query = '''
     SELECT MAX(id) FROM products;
     '''
@@ -137,7 +124,6 @@ def confirm():
     max_id = cursor.fetchone()[0]
     new_id = max_id + 1 if max_id is not None else 1
 
-    # Insert the new product data into the database
     insert_new_product_query = f'''
     INSERT INTO products (id, product, category, shelf_life)
     VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
@@ -145,7 +131,6 @@ def confirm():
 
     cursor.execute(insert_new_product_query)
 
-    # Commit the changes and close the connection
     conn.commit()
     conn.close()
 
@@ -172,23 +157,22 @@ def add_country():
     conn = sqlite3.connect('pantry.db')
     cursor = conn.cursor()
 
-    # Execute a query to retrieve all product names from the products table
     select_product_names_query = '''
     SELECT product
     FROM products;
     '''
 
-    # Execute the query
     cursor.execute(select_product_names_query)
 
-    # Fetch all the results
     product_names = cursor.fetchall()
 
-    # Organize the results into a list
     product_names_list = [product[0] for product in product_names]
     conn.close()
 
     response = recipe.recipe_gen(product_names_list)
 
-    return jsonify(response), 200
+    recipe_dict = {}
+    recipe_dict["recipe"] = response
+
+    return jsonify(recipe_dict), 200
 

@@ -16,8 +16,8 @@ def get_product(image):
     url = upload(image=image)
     product = product_name(url=url)
     product_dict = dict_gen(product)
-    print(product_dict)
-    print(type(product_dict))
+    # print(product_dict)
+    # print(type(product_dict))
     return product_dict
 
 def upload(image):

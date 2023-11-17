@@ -9,7 +9,7 @@ def recipe_gen(list):
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "I need a recipe given the ingredients"},
-            {"role": "user", "content": "this are the ingredients" + str(list)}
+            {"role": "user", "content": "these are the ingredients" + str(list)}
         ]
     )
     return completion.choices[0].message.content

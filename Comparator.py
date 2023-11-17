@@ -13,8 +13,8 @@ def getTotal(list):
     #print(result_pam)
     #print(result_carr)
     Dictionary = {}
-    Dictionary['pam'] = result_pam
-    Dictionary['carr'] = result_carr
+    Dictionary['Pam'] = result_pam
+    Dictionary['Carrefour'] = result_carr
     return Dictionary
 
 def comparaProdotto(product):
@@ -28,12 +28,10 @@ def comparaProdotto(product):
     
     # print("########## PAM")
 
-
     name = doc.find_all(itemprop="name")
     name1 = name[1]
     name_str1 = str(name1).split('"')[-4]
     # print(name_str1)
-
 
     brand1 = doc.find(class_="brand-name").text
     # print(brand1.strip())
@@ -45,9 +43,7 @@ def comparaProdotto(product):
 
     tot_pam = tot_pam + price_num1
 
-
     #fine ricerca pam
-
 
 
     url = f"https://www.carrefour.it/search?q={product}&srule=price-low-to-high"
@@ -55,7 +51,6 @@ def comparaProdotto(product):
     doc = BeautifulSoup(result, "html.parser")
     
     # print("\n\n########## CARREFOUR")
-
 
     name2 = doc.find(class_="tile-description").text.strip()
     # print(name2)
