@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 import sqlite3
 import identifier
 import recipe
+import Comparator
 import json
 
 app = Flask(__name__)
@@ -161,7 +162,7 @@ def cancel():
 def compare_product():
     if request.is_json:
         data = request.get_json()
-        product = data["product"]
+        product = data["list"]
         return jsonify(product)
     return {"error": "Request must be JSON"}, 415
 
