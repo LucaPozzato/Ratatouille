@@ -65,3 +65,4 @@ def compare_product():
 @app.get("/recipe")
 def add_country():
     return jsonify(pantry)
+
