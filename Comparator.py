@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-
 def getTotal(list):
     global tot_carr
     global tot_pam
@@ -17,9 +16,6 @@ def getTotal(list):
     Dictionary['pam'] = result_pam
     Dictionary['carr'] = result_carr
     return Dictionary
-
-
-
 
 def comparaProdotto(product):
 
@@ -85,7 +81,5 @@ def comparaProdotto(product):
 
 #main
 
-list = ["pesto", "pasta", "fagioli"]
 tot_pam = 0
 tot_carr = 0
-getTotal(list)

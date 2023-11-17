@@ -162,8 +162,9 @@ def cancel():
 def compare_product():
     if request.is_json:
         data = request.get_json()
-        product = data["list"]
-        return jsonify(product)
+        products = data["list"]
+        result = Comparator.getTotal(products)
+        return jsonify(result)
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/recipe")
