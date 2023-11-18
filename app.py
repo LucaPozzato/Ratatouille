@@ -183,7 +183,7 @@ def add_country():
 
     return jsonify(recipe_dict), 200
 
-@app.get("/audio")
+@app.get("/pantry/audio")
 def audio():
     if request.is_json:
         to_aud = request.get_json()
