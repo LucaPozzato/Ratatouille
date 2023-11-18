@@ -37,8 +37,11 @@ def list_pantry():
         }
         products_dict_list.append(product_dict)
 
+    pantry_dict = {}
+    pantry_dict["pantry"] = products_dict_list
+
     conn.close()
-    return jsonify(products_dict_list), 200
+    return jsonify(pantry_dict), 200
 
 @app.post("/pantry/add")
 def get_product():
