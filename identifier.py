@@ -2,6 +2,7 @@ import requests
 import json
 from serpapi import GoogleSearch
 import openai
+from datetime import date
 
 IMGBB_KEY = '2ca4ab41ed9360b631237197bbb7db6d'
 IMGBB_URL = 'https://api.imgbb.com/1/upload?expiration=60&key='+IMGBB_KEY
@@ -48,6 +49,8 @@ def product_name(url):
         return results['visual_matches'][0]['title']
 
 def dict_gen(product):
+    today = date.today()
+
     client = openai.OpenAI(
         api_key=CHATGPT_KEY,
         # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
@@ -57,7 +60,7 @@ def dict_gen(product):
         model="gpt-3.5-turbo",
         messages=[
             # {"role": "system", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
-            {"role": "user", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY. The product is" + product + ".I only need the array, please don't generate other text. Don't say anything else."}
+            {"role": "user", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today, today is " + today + ". The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY. The product is" + product + ".I only need the array, please don't generate other text. Don't say anything else."}
         ]
     )
     return completion.choices[0].message.content
