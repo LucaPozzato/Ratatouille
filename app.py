@@ -12,6 +12,7 @@ import os
 app = Flask(__name__)
 
 id_product = ''
+id_dict = ''
 
 @app.get("/pantry")
 def list_pantry():
@@ -113,14 +114,14 @@ def identify_product():
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/identify/confirm")
-def confirm():
+def img_confirm():
     conn = sqlite3.connect('pantry.db')
     cursor = conn.cursor()
 
     global id_product
 
     json_data = json.loads(id_product)
-    print(json_data)
+    # print(json_data)
 
     new_product = json_data['product']
     new_category = json_data['category']
@@ -148,7 +149,7 @@ def confirm():
     return "OK", 200
 
 @app.get("/pantry/identify/cancel")
-def cancel():
+def img_cancel():
     global id_product
     id_product = ''
     return "OK", 200
@@ -200,6 +201,50 @@ def insert_audio():
         f.close()
 
         transcript = f_audio.get_audio(format)
+        
+        global id_dict
+        id_dict = transcript
+
         return jsonify(transcript)
     return {"error": "Request must be JSON"}, 415
 
+@app.get("/pantry/audio/confirm")
+def audio_confirm():
+    conn = sqlite3.connect('pantry.db')
+    cursor = conn.cursor()
+
+    global id_dict
+
+    json_data = json.loads(id_dict)
+
+    for i in json_data:
+        new_product = i['product']
+        new_category = i['category']
+        new_shelf_life = i['shelf_life']
+
+        get_max_id_query = '''
+        SELECT MAX(id) FROM products;
+        '''
+
+        cursor.execute(get_max_id_query)
+        max_id = cursor.fetchone()[0]
+        new_id = max_id + 1 if max_id is not None else 1
+
+        insert_new_product_query = f'''
+        INSERT INTO products (id, product, category, shelf_life)
+        VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
+        '''
+
+        cursor.execute(insert_new_product_query)
+
+    conn.commit()
+    conn.close()
+
+    id_dict = ''
+    return "OK", 200
+
+@app.get("/pantry/audio/cancel")
+def audio_cancel():
+    global id_dict
+    id_dict = ''
+    return "OK", 200
