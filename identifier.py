@@ -8,7 +8,7 @@ IMGBB_URL = 'https://api.imgbb.com/1/upload?expiration=60&key='+IMGBB_KEY
 
 SERPAPI_KEY = '39fe1beb8879e1e647624a3c1e0fc836a936bafc392aa6c1c08ff27fd25f7d87'
 
-CHATGPT_KEY = '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'
+CHATGPT_KEY = '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'
 
 true = True
 
@@ -46,7 +46,8 @@ def product_name(url):
 
 def dict_gen(product):
     client = openai.OpenAI(
-        api_key=CHATGPT_KEY
+        api_key=CHATGPT_KEY,
+        organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 
     completion = client.chat.completions.create(
