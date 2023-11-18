@@ -35,7 +35,7 @@ def get_audio(format):
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "I need an array of dict for each product, its product catgeory and it's shelf life in days. The dictionary should only have as keys: product, category in english, shelf_life represents the number of days of the shelf life"},
-            {"role": "user", "content": "I need to generate the array of dict for:"+transcript+"don't generate text, don't talk"}
+            {"role": "user", "content": "I need to generate the array of dict for:"+transcript+". I only need the array, please don't generate other text. Don't say anything else."}
         ]
     )
     return completion.choices[0].message.content
