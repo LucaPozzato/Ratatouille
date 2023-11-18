@@ -91,3 +91,9 @@ GET request, returns a json file with the recipe
 or if you wanna use ip address of computer
 
 > flask run -h 0.0.0.0 -p PORT
+
+## Deployed server
+
+Server is deployed on digital ocean
+
+> https://ratatouille-fpxhr.ondigitalocean.app
