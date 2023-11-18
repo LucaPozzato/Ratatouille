@@ -33,7 +33,8 @@ def list_pantry():
         product_dict = {
             'product': product_data[0],
             'category': product_data[1],
-            'shelf_life': product_data[2]
+            'shelf_life': product_data[2],
+            'date': product_data[3]
         }
         products_dict_list.append(product_dict)
 
@@ -54,6 +55,7 @@ def get_product():
         new_product = json_data['product']
         new_category = json_data['category']
         new_shelf_life = json_data['shelf_life']
+        new_date = json_data['date']
 
         get_max_id_query = '''
         SELECT MAX(id) FROM products;
@@ -64,8 +66,8 @@ def get_product():
         new_id = max_id + 1 if max_id is not None else 1
 
         insert_new_product_query = f'''
-        INSERT INTO products (id, product, category, shelf_life)
-        VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
+        INSERT INTO products (id, product, category, shelf_life, date)
+        VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life}, '{new_date}');
         '''
 
         cursor.execute(insert_new_product_query)
@@ -130,6 +132,7 @@ def img_confirm():
     new_product = json_data['product']
     new_category = json_data['category']
     new_shelf_life = json_data['shelf_life']
+    new_date = json_data['date']
 
     get_max_id_query = '''
     SELECT MAX(id) FROM products;
@@ -140,8 +143,8 @@ def img_confirm():
     new_id = max_id + 1 if max_id is not None else 1
 
     insert_new_product_query = f'''
-    INSERT INTO products (id, product, category, shelf_life)
-    VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
+    INSERT INTO products (id, product, category, shelf_life, date)
+    VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life}, '{new_date}');
     '''
 
     cursor.execute(insert_new_product_query)
@@ -225,6 +228,7 @@ def audio_confirm():
         new_product = i['product']
         new_category = i['category']
         new_shelf_life = i['shelf_life']
+        new_date = i['date']
 
         get_max_id_query = '''
         SELECT MAX(id) FROM products;
@@ -235,8 +239,8 @@ def audio_confirm():
         new_id = max_id + 1 if max_id is not None else 1
 
         insert_new_product_query = f'''
-        INSERT INTO products (id, product, category, shelf_life)
-        VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life});
+        INSERT INTO products (id, product, category, shelf_life, date)
+        VALUES ({new_id}, '{new_product}', '{new_category}', {new_shelf_life}, '{new_date}');
         '''
 
         cursor.execute(insert_new_product_query)
