@@ -21,7 +21,7 @@ def list_pantry():
     cursor = conn.cursor()
 
     select_all_query = '''
-    SELECT product, category, shelf_life
+    SELECT product, category, shelf_life, date
     FROM products;
     '''
     cursor.execute(select_all_query)
