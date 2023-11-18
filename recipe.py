@@ -6,7 +6,7 @@ def recipe_gen(list):
     )
 
     completion = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "I need a recipe given the ingredients"},
             {"role": "user", "content": "these are the ingredients" + str(list)}
