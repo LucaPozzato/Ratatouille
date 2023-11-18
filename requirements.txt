@@ -3,3 +3,4 @@ requests
 google-search-results
 openai
 beautifulsoup4
+gunicorn
