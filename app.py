@@ -7,6 +7,7 @@ import recipe
 import comparator
 import f_audio
 import json
+import ast
 import os
 
 app = Flask(__name__)
@@ -215,7 +216,7 @@ def audio_confirm():
 
     global id_dict
 
-    json_data = json.loads(id_dict)
+    json_data = ast.literal_eval(id_dict)
 
     for i in json_data:
         new_product = i['product']
