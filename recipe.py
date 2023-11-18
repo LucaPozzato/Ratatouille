@@ -6,10 +6,11 @@ def recipe_gen(list):
     )
 
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {"role": "system", "content": "I need a recipe given the ingredients"},
             {"role": "user", "content": "these are the ingredients" + str(list)}
-        ]
+        ],
+        max_tokens=500
     )
     return completion.choices[0].message.content
