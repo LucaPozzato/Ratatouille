@@ -159,7 +159,7 @@ def compare_product():
         return jsonify(result)
     return {"error": "Request must be JSON"}, 415
 
-@app.post("/recipe")
+@app.get("/recipe")
 def add_country():
     conn = sqlite3.connect('pantry.db')
     cursor = conn.cursor()
@@ -183,7 +183,7 @@ def add_country():
 
     return jsonify(recipe_dict), 200
 
-@app.get("/pantry/audio")
+@app.post("/pantry/audio")
 def audio():
     if request.is_json:
         to_aud = request.get_json()
