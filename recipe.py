@@ -2,8 +2,8 @@ import openai
 
 def recipe_gen(list):
     client = openai.OpenAI(
-        api_key='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',
-        organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
+        api_key='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',
+        # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 
     completion = client.chat.completions.create(
