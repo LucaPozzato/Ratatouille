@@ -38,7 +38,7 @@ def list_pantry():
         products_dict_list.append(product_dict)
 
     conn.close()
-    return jsonify(products_dict_list)
+    return jsonify(products_dict_list), 200
 
 @app.post("/pantry/add")
 def get_product():
@@ -111,7 +111,7 @@ def identify_product():
 
         id_product = identifier.get_product()
         product_dict = json.loads(id_product)
-        return jsonify(product_dict)
+        return jsonify(product_dict), 200
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/identify/confirm")
@@ -161,7 +161,7 @@ def compare_product():
         data = request.get_json()
         products = data["list"]
         result = comparator.getTotal(products)
-        return jsonify(result)
+        return jsonify(result), 200
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/recipe")
@@ -206,7 +206,7 @@ def insert_audio():
         global id_dict
         id_dict = transcript
 
-        return jsonify(transcript)
+        return jsonify(transcript), 200
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/audio/confirm")
