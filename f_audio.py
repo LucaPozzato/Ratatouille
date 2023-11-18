@@ -34,7 +34,7 @@ def get_audio(format):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "I need an array of dict for each product, its product catgeory and the shelf_life which is an estimate of the expiration date. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
+            {"role": "system", "content": "I need an array of dict for each product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
             {"role": "user", "content": "I need to generate the array of dict for:"+transcript+". I only need the array, please don't generate other text. Don't say anything else."}
         ]
     )
