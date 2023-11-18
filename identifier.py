@@ -8,7 +8,7 @@ IMGBB_URL = 'https://api.imgbb.com/1/upload?expiration=60&key='+IMGBB_KEY
 
 SERPAPI_KEY = '39fe1beb8879e1e647624a3c1e0fc836a936bafc392aa6c1c08ff27fd25f7d87'
 
-CHATGPT_KEY = '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'
+CHATGPT_KEY = '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'
 
 true = True
 

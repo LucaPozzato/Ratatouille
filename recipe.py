@@ -2,7 +2,7 @@ import openai
 
 def recipe_gen(list):
     client = openai.OpenAI(
-        api_key='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'
+        api_key='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'
     )
 
     completion = client.chat.completions.create(
