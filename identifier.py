@@ -56,7 +56,7 @@ def dict_gen(product):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "I need a dict that has a product, its product catgeory and it's shelf life in days. The dictionary should only have as keys: product, category in english, shelf_life represents the number of days of the shelf life"},
+            {"role": "system", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
             {"role": "user", "content": "the product is" + product}
         ]
     )
