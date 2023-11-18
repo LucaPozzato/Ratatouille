@@ -5,6 +5,7 @@ import sqlite3
 import identifier
 import recipe
 import comparator
+import audio
 import json
 
 app = Flask(__name__)
@@ -96,8 +97,14 @@ def identify_product():
     if request.is_json:
         to_id = request.get_json()
         image = to_id["image"]
+
+        f = open("image.txt", "w")
+        f.write(image)
+        f.close()
+
         global id_product
-        id_product = identifier.get_product(image=image)
+
+        id_product = identifier.get_product()
         product_dict = json.loads(id_product)
         return jsonify(product_dict)
     return {"error": "Request must be JSON"}, 415
@@ -176,3 +183,16 @@ def add_country():
 
     return jsonify(recipe_dict), 200
 
+@app.get("/audio")
+def audio():
+    if request.is_json:
+        to_aud = request.get_json()
+        audio = to_aud["audio"]
+
+        f = open("audio.txt", "w")
+        f.write(audio)
+        f.close()
+
+        transcript = audio.audio_product()
+        return transcript
+    return {"error": "Request must be JSON"}, 415
