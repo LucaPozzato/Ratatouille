@@ -31,6 +31,13 @@ def get_audio(format):
 
     audio_file.close()
 
-    return transcript
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "I need a dict that has a products, its product catgeory and it's shelf life in days. The dictionary should only have as keys: product, category in english, shelf_life represents the number of days of the shelf life"},
+            {"role": "user", "content": "I need to generate the dict for:"+transcript+"don't generate text, don't talk"}
+        ]
+    )
+    return completion.choices[0].message.content
 
 # get_audio()
