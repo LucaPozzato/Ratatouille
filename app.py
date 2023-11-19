@@ -131,7 +131,7 @@ def identify_product():
     return jsonify(product_dict), 200
     # return {"error": "Request must be JSON"}, 415
 
-@app.post("/pantry/identify")
+@app.post("/pantry/identify/json")
 def identify_product_json():
     if request.is_json:
         to_id = request.get_json()
