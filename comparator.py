@@ -5,8 +5,13 @@ def getTotal(list):
     global tot_carr
     global tot_pam
 
+    pam_list = ''
+    carr_list = ''
+
     for product in list:
-        (tot_pam, tot_carr) = comparaProdotto(product)
+        (product_pam, product_carr) = comparaProdotto(product)
+        pam_list = pam_list + "--" + product_pam
+        carr_list = carr_list + "--" + product_carr
 
     result_pam = "{:.2f}".format(tot_pam)
     result_carr = "{:.2f}".format(tot_carr)
@@ -17,6 +22,8 @@ def getTotal(list):
     Dictionary = {}
     Dictionary['Pam'] = result_pam
     Dictionary['Carrefour'] = result_carr
+    Dictionary['Pam_list'] = pam_list
+    Dictionary['Carr_list'] = carr_list
     
     return Dictionary
 
@@ -44,7 +51,7 @@ def comparaProdotto(product):
     # print("PRICE_NUM:", price_num1)
 
     tot_pam = tot_pam + price_num1
-
+    product_pam = "Product: " + name_str1 + "Price: " + str(price_num1)
     #fine ricerca pam
 
 
@@ -66,6 +73,7 @@ def comparaProdotto(product):
     # print("PRICE_NUM:", price_num2)
 
     tot_carr = tot_carr + price_num2
+    product_carr = "Product: " + str(name2) + "Price: " + str(price_num2)
 
     # print("\n\nBUY HERE: ")
 
@@ -74,7 +82,7 @@ def comparaProdotto(product):
     # else:
     #  print("PAM")
     
-    return (tot_pam, tot_carr)
+    return (product_pam, product_carr)
 
 #main
 tot_pam = 0
