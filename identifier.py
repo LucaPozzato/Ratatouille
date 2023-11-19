@@ -13,10 +13,7 @@ CHATGPT_KEY = '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'
 
 true = True
 
-def get_product():
-    f = open("image.txt", "r")
-    image = f.read()
-
+def get_product(image):
     url = upload(image=image)
     product = product_name(url=url)
     product_dict = dict_gen(product)
