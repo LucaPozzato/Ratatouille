@@ -252,8 +252,8 @@ def insert_audio():
     # print(base64_content)
     format = 'mp3'
 
-    id_product = f_audio(base64_content, format)
-    product_dict = json.loads(id_product)
+    product_dict = f_audio(base64_content, format)
+    id_product = json.loads(id_product)
 
     print(product_dict)
     return jsonify(product_dict), 200
