@@ -252,7 +252,7 @@ def insert_audio():
     # print(base64_content)
     format = 'mp3'
 
-    product_dict = f_audio(base64_content, format)
+    product_dict = f_audio.get_audio(base64_content, format)
     id_product = ast.literal_eval(id_product)
 
     print(product_dict)
