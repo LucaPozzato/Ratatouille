@@ -9,6 +9,7 @@ import f_audio
 import json
 import ast
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -55,7 +56,7 @@ def get_product():
         new_product = json_data['product']
         new_category = json_data['category']
         new_shelf_life = json_data['shelf_life']
-        new_date = json_data['date']
+        new_date = 'n/a'
 
         get_max_id_query = '''
         SELECT MAX(id) FROM products;
@@ -256,3 +257,28 @@ def audio_cancel():
     global id_dict
     id_dict = ''
     return "OK", 200
+
+@app.post("/date")
+def del_product():
+    if request.is_json:
+        conn = sqlite3.connect('pantry.db')
+        cursor = conn.cursor()
+
+        product = request.get_json()
+
+        product_name_to_update = product["product"]
+
+        today_date = datetime.now().strftime('%Y-%m-%d')
+
+        cursor.execute('''
+            UPDATE products
+            SET date = ?
+            WHERE product = ?;
+        ''', (today_date, product_name_to_update))
+
+        # Commit the changes and close the connection
+        conn.commit()
+        conn.close()
+
+        return "OK", 200
+    return {"error": "Request must be JSON"}, 415
