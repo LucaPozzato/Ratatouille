@@ -7,6 +7,7 @@ def getTotal(list):
 
     for product in list:
         (tot_pam, tot_carr) = comparaProdotto(product)
+
     result_pam = "{:.2f}".format(tot_pam)
     result_carr = "{:.2f}".format(tot_carr)
 
