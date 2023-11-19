@@ -221,11 +221,7 @@ def insert_audio():
         global id_dict
         id_dict = ast.literal_eval(transcript)
 
-        json_data = ast.literal_eval(id_dict)
-        for i in json_data:
-            i['date'] = 'n/a'
-
-        return jsonify(json_data), 200
+        return jsonify(id_dict), 200
     return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/audio/confirm")
