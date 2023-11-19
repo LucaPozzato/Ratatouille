@@ -231,7 +231,8 @@ def audio_confirm():
 
     global id_dict
 
-    json_data = ast.literal_eval(id_dict)
+    # json_data = ast.literal_eval(id_dict)
+    json_data = id_dict
 
     for i in json_data:
         new_product = i['product']
