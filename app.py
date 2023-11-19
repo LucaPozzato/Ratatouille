@@ -259,7 +259,7 @@ def audio_cancel():
     return "OK", 200
 
 @app.post("/date")
-def del_product():
+def date():
     if request.is_json:
         conn = sqlite3.connect('pantry.db')
         cursor = conn.cursor()
