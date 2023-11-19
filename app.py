@@ -319,7 +319,7 @@ def date():
     return {"error": "Request must be JSON"}, 415
 
 @app.post("/string")
-def compare_product():
+def get_string():
     if request.is_json:
         data = request.get_json()
         string_s = data["string"]
