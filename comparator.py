@@ -90,6 +90,6 @@ def comparaProdotto(product):
 tot_pam = 0
 tot_carr = 0
 
-products = "salsa,pomodoro,miele"
+# products = "salsa,pomodoro,miele"
 
-getTotal(products.split(","))
+# getTotal(products.split(","))
