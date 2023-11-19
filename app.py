@@ -247,16 +247,15 @@ def insert_audio():
     # Convert the file content to base64
     base64_content = base64.b64encode(file_content).decode('utf-8')
 
-    global id_product
+    transcript = f_audio.get_audio(base64_content, format)
+
+    global id_dict
 
     # print(base64_content)
     format = 'mp3'
+    id_dict = ast.literal_eval(transcript)
 
-    product_dict = f_audio.get_audio(base64_content, format)
-    id_product = ast.literal_eval(id_product)
-
-    print(product_dict)
-    return jsonify(product_dict), 200
+    return jsonify(id_dict), 200
     # return {"error": "Request must be JSON"}, 415
 
 @app.post("/pantry/audio/json")
