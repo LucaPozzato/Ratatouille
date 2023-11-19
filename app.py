@@ -136,7 +136,7 @@ def img_confirm():
 
     global id_product
 
-    json_data = json.loads(id_product)
+    json_data = ast.literal_eval(id_product)
     # print(json_data)
 
     new_product = json_data['product']
