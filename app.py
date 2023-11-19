@@ -124,7 +124,6 @@ def identify_product():
 
         id_product = identifier.get_product(base64_content)
         product_dict = json.loads(id_product)
-        product_dict['date'] = 'n/a'
         return jsonify(product_dict), 200
     return {"error": "Request must be JSON"}, 415
 
@@ -220,9 +219,6 @@ def insert_audio():
         
         global id_dict
         id_dict = ast.literal_eval(transcript)
-
-        for i in transcript:
-            i['date'] = 'n/a'
 
         return jsonify(transcript), 200
     return {"error": "Request must be JSON"}, 415
