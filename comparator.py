@@ -33,7 +33,7 @@ def comparaProdotto(product):
     global tot_pam
 
     url = f"https://pamacasa.pampanorama.it/spesa-consegna-domicilio/20135/ricerca?search={product}&sort=asc"
-    result = requests.get(url).text
+    result = requests.get(url, allow_redirects=False).text
     doc = BeautifulSoup(result, "html.parser")
     
     # print("########## PAM")
@@ -57,7 +57,7 @@ def comparaProdotto(product):
 
 
     url = f"https://www.carrefour.it/search?q={product}&srule=price-low-to-high"
-    result = requests.get(url).text
+    result = requests.get(url, allow_redirects=False).text
     doc = BeautifulSoup(result, "html.parser")
     
     # print("\n\n########## CARREFOUR")
