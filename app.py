@@ -230,7 +230,7 @@ def add_country():
     return jsonify(recipe_dict), 200
 
 @app.post("/pantry/audio")
-def identify_product():
+def insert_audio():
     # if request.is_json:
     if 'file' not in request.files:
         return 'No file part'
