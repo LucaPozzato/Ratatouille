@@ -230,7 +230,37 @@ def add_country():
     return jsonify(recipe_dict), 200
 
 @app.post("/pantry/audio")
-def insert_audio():
+def identify_product():
+    # if request.is_json:
+    if 'file' not in request.files:
+        return 'No file part'
+
+    file = request.files['file']
+
+    # If the user submits an empty part without selecting a file, ignore it
+    if file.filename == '':
+        return 'No selected file'
+
+    # Process the uploaded file
+    file_content = file.read()
+
+    # Convert the file content to base64
+    base64_content = base64.b64encode(file_content).decode('utf-8')
+
+    global id_product
+
+    # print(base64_content)
+    format = 'mp3'
+
+    transcript = f_audio(base64_content, format)
+    product_dict = json.loads(id_product)
+
+    print(product_dict)
+    return jsonify(product_dict), 200
+    # return {"error": "Request must be JSON"}, 415
+
+@app.post("/pantry/audio/json")
+def insert_audio_json():
     if request.is_json:
         to_aud = request.get_json()
         audio = to_aud["audio"]
@@ -242,7 +272,7 @@ def insert_audio():
         f.write(audio)
         f.close()
 
-        transcript = f_audio.get_audio(format)
+        transcript = f_audio.get_audio(audio, format)
         
         global id_dict
         id_dict = ast.literal_eval(transcript)

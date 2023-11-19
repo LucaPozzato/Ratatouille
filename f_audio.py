@@ -3,7 +3,7 @@ import os
 import base64
 from datetime import date
 
-def get_audio(format):
+def get_audio(audio_64, format):
     # format = "m4a"
     # os.system("base64 -D -i audio.txt -o audio."+format)
 
@@ -15,7 +15,7 @@ def get_audio(format):
 
     input_file = open("audio.txt", "r")
     audio_file_encoded = input_file.read()
-    audio_file_decoded = base64.b64decode(audio_file_encoded)
+    audio_file_decoded = base64.b64decode(audio_64)
     input_file.close()
 
     # print(audio_file_decoded)
