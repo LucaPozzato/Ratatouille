@@ -198,7 +198,9 @@ def compare_product():
     if request.is_json:
         data = request.get_json()
         products = data["list"]
+        print(products)
         product_list = products.split(",")
+        print(product_list)
         result = comparator.getTotal(product_list)
         return jsonify(result), 200
     return {"error": "Request must be JSON"}, 415
@@ -314,4 +316,13 @@ def date():
         conn.close()
 
         return "OK", 200
+    return {"error": "Request must be JSON"}, 415
+
+@app.post("/string")
+def compare_product():
+    if request.is_json:
+        data = request.get_json()
+        string_s = data["string"]
+        print(string_s)
+        return jsonify(string_s), 200
     return {"error": "Request must be JSON"}, 415

@@ -10,8 +10,8 @@ def getTotal(list):
 
     for product in list:
         (product_pam, product_carr) = comparaProdotto(product)
-        pam_list = pam_list + "--" + product_pam
-        carr_list = carr_list + "--" + product_carr
+        pam_list = pam_list + " -- " + product_pam
+        carr_list = carr_list + " -- " + product_carr
 
     result_pam = "{:.2f}".format(tot_pam)
     result_carr = "{:.2f}".format(tot_carr)
@@ -25,6 +25,7 @@ def getTotal(list):
     Dictionary['Pam_list'] = pam_list
     Dictionary['Carr_list'] = carr_list
     
+    print(Dictionary)
     return Dictionary
 
 def comparaProdotto(product):
@@ -51,7 +52,7 @@ def comparaProdotto(product):
     # print("PRICE_NUM:", price_num1)
 
     tot_pam = tot_pam + price_num1
-    product_pam = "Product: " + name_str1 + "Price: " + str(price_num1)
+    product_pam = "Product: " + name_str1 + " " + "Price: " + str(price_num1)
     #fine ricerca pam
 
 
@@ -73,7 +74,7 @@ def comparaProdotto(product):
     # print("PRICE_NUM:", price_num2)
 
     tot_carr = tot_carr + price_num2
-    product_carr = "Product: " + str(name2) + "Price: " + str(price_num2)
+    product_carr = "Product: " + str(name2) + " " + "Price: " + str(price_num2)
 
     # print("\n\nBUY HERE: ")
 
@@ -87,3 +88,7 @@ def comparaProdotto(product):
 #main
 tot_pam = 0
 tot_carr = 0
+
+products = "salsa,pomodoro,miele"
+
+getTotal(products.split(","))
