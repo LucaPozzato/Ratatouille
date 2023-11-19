@@ -104,30 +104,30 @@ def del_product():
 
 @app.post("/pantry/identify")
 def identify_product():
-    if request.is_json:
-        if 'file' not in request.files:
-            return 'No file part'
+    # if request.is_json:
+    if 'file' not in request.files:
+        return 'No file part'
 
-        file = request.files['file']
+    file = request.files['file']
 
-        # If the user submits an empty part without selecting a file, ignore it
-        if file.filename == '':
-            return 'No selected file'
+    # If the user submits an empty part without selecting a file, ignore it
+    if file.filename == '':
+        return 'No selected file'
 
-        # Process the uploaded file
-        file_content = file.read()
+    # Process the uploaded file
+    file_content = file.read()
 
-        # Convert the file content to base64
-        base64_content = base64.b64encode(file_content).decode('utf-8')
+    # Convert the file content to base64
+    base64_content = base64.b64encode(file_content).decode('utf-8')
 
-        global id_product
+    global id_product
 
-        id_product = identifier.get_product(base64_content)
-        product_dict = json.loads(id_product)
+    id_product = identifier.get_product(base64_content)
+    product_dict = json.loads(id_product)
 
-        print(product_dict)
-        return jsonify(product_dict), 200
-    return {"error": "Request must be JSON"}, 415
+    print(product_dict)
+    return jsonify(product_dict), 200
+    # return {"error": "Request must be JSON"}, 415
 
 @app.get("/pantry/identify/confirm")
 def img_confirm():
