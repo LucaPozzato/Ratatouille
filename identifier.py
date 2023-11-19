@@ -60,7 +60,7 @@ def dict_gen(product):
         model="gpt-3.5-turbo",
         messages=[
             # {"role": "system", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
-            {"role": "user", "content": "I need a dict that has a product, its product catgeory and the shelf_life and the day. The dictionary should only have as keys: product, category in english, shelf_life is in days, date is always equals to 'n/a'. The product is" + product + ".I only need the array, please don't generate other text. Don't say anything else."}
+            {"role": "user", "content": "I need a dict that has a product, its product catgeory and the shelf_life and the day. The dictionary should only have as keys: product, category in english, shelf_life is just the number of days, date. The product is" + product + ".I only need the array, please don't generate other text. Don't say anything else."}
         ]
     )
     return completion.choices[0].message.content

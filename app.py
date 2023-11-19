@@ -133,7 +133,7 @@ def img_confirm():
     new_product = json_data['product']
     new_category = json_data['category']
     new_shelf_life = json_data['shelf_life']
-    new_date = json_data['date']
+    new_date = 'n/a'
 
     get_max_id_query = '''
     SELECT MAX(id) FROM products;
@@ -229,7 +229,7 @@ def audio_confirm():
         new_product = i['product']
         new_category = i['category']
         new_shelf_life = i['shelf_life']
-        new_date = i['date']
+        new_date = 'n/a'
 
         get_max_id_query = '''
         SELECT MAX(id) FROM products;
