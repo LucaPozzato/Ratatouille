@@ -122,6 +122,8 @@ def identify_product():
 
     global id_product
 
+    print(base64_content)
+
     id_product = identifier.get_product(base64_content)
     product_dict = json.loads(id_product)
 
@@ -136,7 +138,8 @@ def img_confirm():
 
     global id_product
 
-    json_data = ast.literal_eval(id_product)
+    print(id_product)
+    json_data = json.loads(id_product)
     # print(json_data)
 
     new_product = json_data['product']
