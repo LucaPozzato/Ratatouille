@@ -145,7 +145,7 @@ def identify_product_json():
 
         global id_product
 
-        id_product = identifier.get_product()
+        id_product = identifier.get_product(image=image)
         product_dict = json.loads(id_product)
         return jsonify(product_dict), 200
     return {"error": "Request must be JSON"}, 415
@@ -198,6 +198,7 @@ def compare_product():
     if request.is_json:
         data = request.get_json()
         products = data["list"]
+        product_list = products.split(",")
         result = comparator.getTotal(products)
         return jsonify(result), 200
     return {"error": "Request must be JSON"}, 415
