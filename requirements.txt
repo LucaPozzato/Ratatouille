@@ -5,3 +5,4 @@ openai
 beautifulsoup4
 gunicorn
 datetime
+urllib3>=1.26.6

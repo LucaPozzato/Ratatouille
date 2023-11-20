@@ -102,32 +102,25 @@ def del_product():
 
 @app.post("/pantry/identify")
 def identify_product():
-    # if request.is_json:
     if 'file' not in request.files:
         return 'No file part'
 
     file = request.files['file']
 
-    # If the user submits an empty part without selecting a file, ignore it
     if file.filename == '':
         return 'No selected file'
 
-    # Process the uploaded file
     file_content = file.read()
 
-    # Convert the file content to base64
-    base64_content = base64.b64encode(file_content).decode('utf-8')
+    base64_image = base64.b64encode(file_content).decode('utf-8')
 
     global id_product
 
-    # print(base64_content)
-
-    id_product = identifier.get_product(base64_content)
+    id_product = identifier.get_product(base64_image)
     product_dict = json.loads(id_product)
 
     print(product_dict)
     return jsonify(product_dict), 200
-    # return {"error": "Request must be JSON"}, 415
 
 @app.post("/pantry/identify/json")
 def identify_product_json():
@@ -135,16 +128,9 @@ def identify_product_json():
         to_id = request.get_json()
         image = to_id["image"]
 
-        os.system("rm image.txt")
-
-        f = open("image.txt", "w")
-        f.write(image)
-        f.close()
-
         global id_product
-
         id_product = identifier.get_product(image=image)
-        # product_dict = json.loads(id_product)
+
         return jsonify(id_product), 200
     return {"error": "Request must be JSON"}, 415
 
@@ -154,10 +140,7 @@ def img_confirm():
     cursor = conn.cursor()
 
     global id_product
-
-    # print(id_product)
     json_data = json.loads(id_product)
-    # print(json_data)
 
     new_product = json_data['product']
     new_category = json_data['category']
@@ -196,10 +179,10 @@ def compare_product():
     if request.is_json:
         data = request.get_json()
         products = data["list"]
-        print(products)
+
         product_list = products.split(",")
-        print(product_list)
         result = comparator.getTotal(product_list)
+
         return jsonify(result), 200
     return {"error": "Request must be JSON"}, 415
 
@@ -229,32 +212,26 @@ def add_country():
 
 @app.post("/pantry/audio")
 def insert_audio():
-    # if request.is_json:
     if 'file' not in request.files:
         return 'No file part'
 
     file = request.files['file']
 
-    # If the user submits an empty part without selecting a file, ignore it
     if file.filename == '':
         return 'No selected file'
 
-    # Process the uploaded file
     file_content = file.read()
 
-    # Convert the file content to base64
-    base64_content = base64.b64encode(file_content).decode('utf-8')
+    base64_audio = base64.b64encode(file_content).decode('utf-8')
 
     format = 'mp3'
-    transcript = f_audio.get_audio(base64_content, format)
+    transcript = f_audio.get_audio(base64_audio, format)
 
     global id_dict
 
-    # print(base64_content)
     id_dict = ast.literal_eval(transcript)
 
     return jsonify(id_dict), 200
-    # return {"error": "Request must be JSON"}, 415
 
 @app.post("/pantry/audio/json")
 def insert_audio_json():
@@ -262,12 +239,6 @@ def insert_audio_json():
         to_aud = request.get_json()
         audio = to_aud["audio"]
         format = to_aud["format"]
-
-        os.system("rm audio.txt")
-
-        f = open("audio.txt", "w")
-        f.write(audio)
-        f.close()
 
         transcript = f_audio.get_audio(audio, format)
         
@@ -283,8 +254,6 @@ def audio_confirm():
     cursor = conn.cursor()
 
     global id_dict
-
-    # json_data = ast.literal_eval(id_dict)
     json_data = id_dict
 
     for i in json_data:
@@ -338,18 +307,8 @@ def date():
             WHERE product = ?;
         ''', (today_date, product_name_to_update))
 
-        # Commit the changes and close the connection
         conn.commit()
         conn.close()
 
         return "OK", 200
-    return {"error": "Request must be JSON"}, 415
-
-@app.post("/string")
-def get_string():
-    if request.is_json:
-        data = request.get_json()
-        string_s = data["string"]
-        print(string_s)
-        return jsonify(string_s), 200
     return {"error": "Request must be JSON"}, 415

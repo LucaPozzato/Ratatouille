@@ -6,7 +6,6 @@ OPENAI_KEY = os.environ['OPENAI_KEY']
 def recipe_gen(list):
     client = openai.OpenAI(
         api_key=OPENAI_KEY,
-        # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 
     completion = client.chat.completions.create(

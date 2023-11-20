@@ -18,8 +18,6 @@ def get_product(image):
     url = upload(image=image)
     product = product_name(url=url)
     product_dict = dict_gen(product)
-    # print(product_dict)
-    # print(type(product_dict))
     return product_dict
 
 def upload(image):
@@ -46,17 +44,13 @@ def product_name(url):
         return results['visual_matches'][0]['title']
 
 def dict_gen(product):
-    today = date.today()
-
     client = openai.OpenAI(
         api_key=OPENAI_KEY,
-        # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            # {"role": "system", "content": "I need a dict that has a product, its product catgeory and the shelf_life which is an estimate of the expiration date given that I purchased the product today. The dictionary should only have as keys: product, category in english, shelf_life is the string formatted like DD-MM-YYYY"},
             {"role": "user", "content": "I need a dict that has a product, its product catgeory and the shelf_life and the day. The dictionary should only have as keys: product, category in english, shelf_life is just the number of days, date = 'n/a'. The product is" + product + ".I only need the array, please don't generate other text. Don't say anything else."}
         ]
     )
