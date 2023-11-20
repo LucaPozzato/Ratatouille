@@ -1,8 +1,11 @@
 import openai
+import os
+
+OPENAI_KEY = os.environ['OPENAI_KEY']
 
 def recipe_gen(list):
     client = openai.OpenAI(
-        api_key='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',
+        api_key=OPENAI_KEY,
         # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 

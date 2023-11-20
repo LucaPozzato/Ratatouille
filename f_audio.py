@@ -3,6 +3,8 @@ import os
 import base64
 from datetime import date
 
+OPENAI_KEY = os.environ['OPENAI_KEY']
+
 def get_audio(audio_64, format):
     # format = "m4a"
     # os.system("base64 -D -i audio.txt -o audio."+format)
@@ -10,7 +12,7 @@ def get_audio(audio_64, format):
     today = date.today()
 
     client = OpenAI(
-        api_key='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'
+        api_key=OPENAI_KEY
     )
 
     input_file = open("audio.txt", "r")

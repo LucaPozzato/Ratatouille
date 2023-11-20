@@ -1,5 +1,3 @@
-# server.py
-
 from flask import Flask, request, jsonify
 import sqlite3
 import identifier

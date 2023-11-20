@@ -3,13 +3,14 @@ import json
 from serpapi import GoogleSearch
 import openai
 from datetime import date
+import os
 
-IMGBB_KEY = '2ca4ab41ed9360b631237197bbb7db6d'
+IMGBB_KEY = os.environ['IMGBB_KEY']
 IMGBB_URL = 'https://api.imgbb.com/1/upload?expiration=60&key='+IMGBB_KEY
 
-SERPAPI_KEY = '39fe1beb8879e1e647624a3c1e0fc836a936bafc392aa6c1c08ff27fd25f7d87'
+SERPAPI_KEY = os.environ['SERPAPI_KEY']
 
-CHATGPT_KEY = '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'
+OPENAI_KEY = os.environ['OPENAI_KEY']
 
 true = True
 
@@ -25,7 +26,6 @@ def upload(image):
     r = requests.post(IMGBB_URL, data={'image': image})
     response = r.text
     dict = json.loads(response)
-    # print(dict)
     data = dict["data"]
     IMAGE_URL = data["url"]
     return IMAGE_URL
@@ -49,7 +49,7 @@ def dict_gen(product):
     today = date.today()
 
     client = openai.OpenAI(
-        api_key=CHATGPT_KEY,
+        api_key=OPENAI_KEY,
         # organization='org-oXnNlV1Z1fhmOWvYF8N6mjj2'
     )
 
