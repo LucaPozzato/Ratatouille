@@ -10,7 +10,7 @@ I was in a team of 5 people and we had 36 hours to present a product with the th
 
 * Third feature is the management of the pantry/fridge
   * The first action is adding the products to the pantry, this can be done in three ways:
-    * By manually by adding the product 
+    * By adding the product manually
     * By uploading a picture of the product
     * By sending an audio where the customer says everything he bough at the supermaket
   * Second action is the deletion of products
