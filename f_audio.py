@@ -10,9 +10,9 @@ def get_audio(audio_64, format):
         api_key=OPENAI_KEY
     )
 
-    input_file = open("audio.txt", "r")
+    # input_file = open("audio.txt", "r")
     audio_file_decoded = base64.b64decode(audio_64)
-    input_file.close()
+    # input_file.close()
 
     output_file = open("audio."+format, "wb")
     output_file.write(audio_file_decoded)

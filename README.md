@@ -22,6 +22,8 @@ I was responsible to the backend of the application and this repo is the end res
 
 ## Server API
 
+[Swagger link to preview and try APIs](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/LucaPozzato/Ratatouille/main/api_doc.yml) 
+
 ### List of products -> /pantry
 
 GET request, returns a json file with all the items in database
