@@ -117,7 +117,7 @@ GET request (After you see identified products, if it's not correct you don't ad
 POST request, payload needs to be a json file (formatted as shown in example, with products in a string separated by comma with no space). Response is a json with the supermarket and the total cost of the products (in €)
 
 > Request: \
-`curl -i http://SERVER_IP:SERVER_PORT/compare -X POST -H 'Content-Type: application/json' -d '{"list": "gocciole,pasta,pesto,fagioli"}'`
+`curl -i http://SERVER_IP:SERVER_PORT/compare -X POST -H 'Content-Type: application/json' -d '{"list": "gocciole,pasta"}'`
 
 > Response: \
 `{"Carr_list":" -- Product: Pavesi Gocciole Wild Biscotti con Gocce di Cioccolato e Farina Integrale 350g, Price: 2.55 -- Product: Barilla Pasta Penne Rigate n.73 100% Grano Italiano 500g, Price: 1.25","Carrefour":"9.04","Penny":"8.34","Penny_list":" -- Product: Pavesi Gocciole Chocolate Biscotti con Gocce di Cioccolato 500g, Price: 2.99 -- Product: Percoche pasta gialla or. spa, Price: 0.29"}`
