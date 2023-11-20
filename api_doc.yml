@@ -22,8 +22,8 @@ info:
     I was responsible to the backend of the application and this repo is the end result of my work(special thanks to [Niccolò Puccia](https://github.com/niccolopuccia) who took care of the supermarket compare feature in [comparator.py](https://github.com/LucaPozzato/Ratatouille/blob/main/comparator.py)) 
   version: '1.0'
 servers:
-  - url: http://192.168.1.2:8080
-    # description: Server run in local with flask
+  - url: http://127.0.0.1:5000
+    description: Default server run with flask
 
 components:
   schemas:
