@@ -1,0 +1,66 @@
+openapi: '3.0.2'
+info:
+  title: Ratatouille API
+  description: | 
+    This project is the end result of an Hackathon.
+    I was in a team of 5 people and we had 36 hours to present a product with the theme of well-being. Our team and I decide to create an app that follows the customer in the journey from buying groceries to having a meal. The app has 4 main features:
+  
+    * First feature is to be able to compare the supermarkets and choose the cheapest one given a list of products (due to time restrictions we just compared two supermarkets: Carrefour and Penny) 
+  
+    * Second feature of the app is to have a virtual fridge/pantry where the customer can see all the products that he has in the fridge/pantry, their shelf life and when it was opened
+  
+    * Third feature is the management of the pantry/fridge
+      * The first action is adding the products to the pantry, this can be done in three ways:
+        * By manually by adding the product 
+        * By uploading a picture of the product
+        * By sending an audio where the customer says everything he bough at the supermaket
+      * Second action is the deletion of products
+      * Third action is setting the date when a certain product was opened (the customer when pressing the burron sets "today" as the day when it was opened)
+  
+    * Forth feature is to generate a recipe based only on what the customer has in the fridge
+  
+    I was responsible to the backend of the application and this repo is the end result of my work(special thanks to [Niccolò Puccia](https://github.com/niccolopuccia) who took care of the supermarket compare feature in [comparator.py](https://github.com/LucaPozzato/Ratatouille/blob/main/comparator.py)) 
+  version: '1.0'
+servers:
+  - url: http://IP_ADRESS:PORT
+    # description: Server run in local with flask
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        category:
+          type: string
+          example: biscuit
+        date:
+          type: string
+          example: 2023-12-11
+        product:
+          type: string
+          example: gocciole
+        shelf_life:
+          type: integer
+          example: 365
+
+paths:
+  /pantry:
+    get:
+      summary: Returns a list of products.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pantry: 
+                    type: array
+                    items: 
+                      $ref: '#/components/schemas/product'
+                      
+
+
+

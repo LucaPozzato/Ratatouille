@@ -6,11 +6,12 @@ import comparator
 import f_audio
 import json
 import ast
-import os
 from datetime import datetime
 import base64
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
 
 id_product = ''
 id_dict = ''
