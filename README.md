@@ -20,6 +20,13 @@ I was in a team of 5 people and we had 36 hours to present a product with the th
 
 I was responsible to the backend of the application and this repo is the end result of my work (special thanks to [Niccolò Puccia](https://github.com/niccolopuccia) who took care of the supermarket compare feature in [comparator.py](https://github.com/LucaPozzato/Ratatouille/blob/main/comparator.py)) 
 
+## Apple shortcuts
+
+While testing I also created some apple shortcuts, to use them just change the ip adress inside the shortcut's text box
+
+* [Add by audio shortcut](https://www.icloud.com/shortcuts/ad792e72817c436c8e5a824c93fdd998)
+* [Add by picture shortcut](https://www.icloud.com/shortcuts/ea0cda17d0144a09ae6982e6e722bac7)
+
 ## Server API
 
 [Swagger link to preview and try APIs](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/LucaPozzato/Ratatouille/main/api_doc.yml) 
@@ -174,10 +181,3 @@ finally run the server
 or if you wanna use ip address of computer
 
 > flask run -h 0.0.0.0 -p PORT
-
-## Apple shortcuts
-
-While testing I also created some apple shortcuts, to use them just change the ip adress inside the shortcut's text box
-
-* [Add by audio shortcut](https://www.icloud.com/shortcuts/ad792e72817c436c8e5a824c93fdd998)
-* [Add by picture shortcut](https://www.icloud.com/shortcuts/ea0cda17d0144a09ae6982e6e722bac7)
